@@ -1,0 +1,48 @@
+#globallink {
+	margin: 0px;
+	padding: 0px;
+	font-family: 方正小标宋简体;
+	font-size: 14px;
+	/*height:43px;*/
+}
+
+#globallink ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+	height: 36px;
+}
+
+#globallink ul:hover {
+	height: 43px;
+}
+
+#globallink li {
+	float: left;
+	text-align: center;
+	width: 113.5px;
+}
+
+#globallink a {
+	display: block;
+	padding: 9px 6px 11px 6px;
+	/*background:url(button1.jpg) no-repeat;*/
+	margin: 0px;
+	text-decoration: none;
+}
+
+#globallink a:link,
+#globallink a:visited {
+	color: #004a87;
+	/*text-decoration:underline;*/
+}
+
+#globallink a:hover {
+	color: #000000;
+	/*text-decoration:underline;
+	background:#004a87;//url(button1_bg.jpg) no-repeat;*/
+	opacity: 0.5;
+	border-radius: 12px;
+	border: 2px solid #004a87;
+	font-size: 16px;
+}

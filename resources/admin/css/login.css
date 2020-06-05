@@ -1,0 +1,18 @@
+.input {
+    width: 200px;
+}
+
+.loginform {
+    margin-left: 60%;
+    margin-right: 10%;
+}
+
+.jumbotron {
+    margin-top: 2%;
+    padding: 0px;
+}
+
+.lead {
+    text-align: right;
+    height: 0px;
+}

@@ -1,0 +1,19 @@
+#footer {
+	background-color: #FFFFFF;
+	margin: 1px 0px 0px 0px;
+	clear: both;
+	position: relative;
+	padding: 1px 0px 1px 0px;
+}
+
+#footer p {
+	text-align: center;
+	padding: 0px;
+	margin: 4px 5px 4px 5px;
+	background-color: #91a8fd;
+}
+
+#footer p a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
