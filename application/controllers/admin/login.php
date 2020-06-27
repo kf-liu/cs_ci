@@ -69,7 +69,8 @@ class Login extends CI_Controller
             );
             $this->load->model('login_model','logM');
             $this->logM->adRegister($data);
-            echo "<script>alert('注册成功')</script>";
+            echo "<script>alert('注册成功 请登录')</script>";
+            $this->show_register();
         }else{
             $this->load->helper('form');
             // $this->load->view('admin/templets/header');

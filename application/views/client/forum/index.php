@@ -88,7 +88,7 @@
     .news .sanlian {
         margin-top: 0rem;
         margin-bottom: 0rem;
-        box-shadow:0px -8px 8px -2px #eee;
+        box-shadow: 0px -8px 8px -2px #eee;
     }
 
     .news .card-footer {
@@ -168,15 +168,27 @@
     <br>
     <br>
     <div class="card border-primary mb-3 bg" style="max-width: 20rem;">
-        <div class="card-header">发布短讯</div>
-        <div class="card-body">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="标题（11字以内）" name="biaoti">
-                <input type="text" class="form-control" placeholder="摘要（13字/行，可为空）" name="biaoti">
-                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="正文（100-200字为佳）"></textarea>
-                <button type="submit" class="btn btn-primary">发布 ✈</button>
+        <form method="POST" action="<?php echo site_url('client/forum/addNews') ?>">
+            <div class="card-header">发布短讯</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="标题（11字以内）" name="biaoti" value="<?php echo set_value('biaoti') ?>">
+                    <?php echo form_error(
+                        'biaoti',
+                        '<a style="text-align:right;color:#000;font-size:12px;">',
+                        '</a>'
+                    ); ?>
+                    <input type="text" class="form-control" placeholder="摘要（13字/行，可为空）" name="zhaiyao" value="<?php echo set_value('zhaiyao') ?>">
+                    <textarea class="form-control" id="exampleTextarea" rows="3" name="zhengwen" placeholder="正文（100-200字为佳）"><?php echo set_value('zhengwen') ?></textarea>
+                    <?php echo form_error(
+                        'zhengwen',
+                        '<a style="text-align:right;color:#000;font-size:12px;">',
+                        '</a>'
+                    ); ?>
+                    <button type="submit" class="btn btn-primary">发布 ✈</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
 </div>
@@ -188,9 +200,7 @@
     <!-- 右侧短讯版块 -->
     <h3>百字短讯</h3>
     <hr>
-    <?php for ($i = count($news)-1; $i >= 0; $i--) {
-        if ($i == 0 || $i == 3) echo "<div>"; ?>
-
+    <?php for ($i = count($news) - 1; $i >= 0; $i--) { ?>
         <div class="card mb-3 news bg">
             <h5 class="card-header">
                 <?php echo $news[$i]['biaoti']; ?>
@@ -219,8 +229,17 @@
             </div>
             <div class="form-group pinglun-textarea" id="pinglun-textarea<?php echo $i ?>" style="display:none;">
                 <!-- <label for="exampleTextarea">Example textarea</label> -->
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                <button type="submit" class="btn btn-primary">评论</button>
+                <form method="POST" action="<?php echo site_url('client/forum/addComments') ?>">
+                    <textarea class="form-control" id="exampleTextarea" rows="3" name="comments" placeholder="<?php echo set_value('comments') ?>">
+                        <?php echo form_error(
+                            'biaoti',
+                            '<a style="text-align:right;color:#000;font-size:12px;">',
+                            '</a>'
+                        ); ?>
+                    </textarea>
+                    <button type="submit" class="btn btn-primary">评论</button>
+                    <input type="hidden" name="news_id" value="<?php echo $news[$i]['id']; ?>">
+                </form>
             </div>
             <div class="pingluns" id="pingluns<?php echo $i ?>">
                 <?php foreach ($comments[$i] as $c) { ?>
@@ -238,8 +257,7 @@
                 <?php echo $news[$i]['author_name'] . " · " . $news[$i]['time']; ?>
             </div>
         </div>
-    <?php if ($i == 2 || $i == 5) echo "</div>";
-    } ?>
+    <?php } ?>
 
 </div>
 </div>

@@ -25,4 +25,11 @@ class Forum_model extends CI_Model
         }
         return $res;
     }
+    public function addNews($data)
+    {
+        $this->db->insert('news', $data);
+    }
+    public function addComments($data){
+        $this->db->insert('comments', $data);
+    }
 }
