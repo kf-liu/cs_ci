@@ -1,0 +1,229 @@
+#left {
+    float: left;
+    width: 290px;
+    background-color: #FFFFFF;
+    margin: 0px;
+    padding: 5px 0px 5px 0px;
+    color: #d8ecff;
+}
+
+#left div {
+    background-color: #91a8fd;
+    margin: 0px 5px 0px 5px;
+}
+
+#weather {
+    /*//background:url(images/weather.jpg) no-repeat -5px 0px;*/
+    margin: 0px 5px 0px 5px;
+    background-color: #5ea6eb;
+}
+
+/*div#left #weather h3{
+	font-size:12px;
+	padding:24px 0px 0px 74px;
+	color:#FFFFFF;
+	background:none;
+	margin:0px;
+}*/
+div#weather ul {
+    margin: 8px 5px 0px 5px;
+    padding: 10px 0px 8px 5px;
+    list-style: none;
+}
+
+#weather ul li {
+    background: url(icon1.gif) no-repeat 0px 6px;
+    padding: 1px 0px 0px 10px;
+}
+
+#left div h3 {
+    font-size: 12px;
+    padding: 4px 0px 2px 15px;
+    color: #003973;
+    margin: 0px 0px 5px 0px;
+    background: #bbddff url(icon2.gif) no-repeat 5px 7px;
+}
+
+#today {
+    padding: 0px 0px 10px 0px;
+}
+
+#today ul {
+    list-style: none;
+    margin: -5px 0px 0px 0px;
+    padding: 0px;
+}
+
+#today ul li {
+    text-align: center;
+}
+
+#today ul li img {
+    border: 1px solid #FFFFFF;
+    margin: 8px 0px 0px 0px;
+    width: 270px;
+}
+
+#today ul li a:link,
+#today ul li a:visited {
+    color: #d8ecff;
+    text-decoration: none;
+}
+
+#today ul li a:hover {
+    color: #FFFF00;
+    text-decoration: underline;
+}
+
+#middle {
+    background-color: #FFFFFF;
+    margin: 0px 0px 0px 2px;
+    padding: 5px 0px 0px 0px;
+    width: 610px;
+    float: left;
+}
+
+#middle div {
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+}
+
+#middle h3 {
+    margin: 0px;
+    padding: 0px;
+    height: 41px;
+}
+
+#middle h3 span {
+    display: none;
+    /* 文字去掉，换成图片 */
+}
+
+#beauty {
+    margin: 15px 0px 0px 0px;
+    padding: 0px;
+}
+
+/*#beauty h3{
+	background:url(picture_h1.gif) no-repeat;
+}*/
+#beauty ul,
+#route ul {
+    list-style: none;
+    margin: 8px 1px 0px 1px;
+    padding: 0px;
+}
+
+#beauty ul li {
+    float: left;
+    /*width:150px;*/
+    text-align: center;
+}
+
+#beauty ul li img {
+    border: 1px solid #91a8fd;
+    height: 99px;
+}
+
+#route {
+    clear: both;
+    margin: 0px;
+    padding: 5px 0px 15px 0px;
+}
+
+#route h3 {
+    background: url(route_h1.gif) no-repeat;
+}
+
+#route ul li {
+    padding: 3px 0px 0px 30px;
+    background: url(icon1.gif) no-repeat 20px 7px;
+}
+
+#route ul li a:link,
+#route ul li a:visited {
+    color: #004e8a;
+    text-decoration: none;
+}
+
+#route ul li a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+#right {
+    float: left;
+    margin: 0px 0px 1px 2px;
+    width: 225px;
+    background-color: #FFFFFF;
+    color: #d8ecff;
+}
+
+#right div {
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #91a8fd;
+}
+
+#right div h3 {
+    font-size: 12px;
+    padding: 4px 0px 2px 15px;
+    color: #003973;
+    margin: 0px 0px 5px 0px;
+    background: #bbddff url(icon2.gif) no-repeat 5px 7px;
+}
+
+#map {
+    margin-top: 5px;
+}
+
+#map p {
+    text-align: center;
+    margin: 0px;
+    padding: 2px 0px 5px 0px;
+}
+
+#map p img {
+    border: 1px solid #FFFFFF;
+    width: 200px;
+}
+
+#food {
+    padding-top: 10px;
+}
+
+#food ul,
+#life ul {
+    list-style: none;
+    padding: 0px 0px 10px 0px;
+    margin: 10px 10px 0px 10px;
+}
+
+#food ul li,
+#life ul li {
+    background: url(icon1.gif) no-repeat 3px 9px;
+    padding: 3px 0px 3px 12px;
+    border-bottom: 1px dashed #EEEEEE;
+}
+
+#food ul li a:link,
+#food ul li a:visited,
+#life ul li a:link,
+#life ul li a:visited {
+    color: #d8ecff;
+    text-decoration: none;
+}
+
+#food ul li a:hover,
+#life ul li a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+#life {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,110 @@
+#map-div {
+	margin-top: -60px;
+	width: 1130px;
+	height: 600px;
+	border-radius: 12px;
+	border: 2px solid #91a8fd;
+	/*//#004a87;*/
+	z-index: -1;
+}
+
+#map-ctl {
+	width: 20px;
+	margin-left: 1132px;
+	margin-top: -630px;
+}
+
+#map-content {
+	/*//margin-left:1010px;*/
+	margin-top: -200px;
+	margin-left: -122px;
+	width: 120px;
+	height: 200px;
+	border-radius: 12px;
+	/*//border: 2px solid #91a8fd;*/
+	z-index: 1;
+	display: none;
+	/*//background-color:#91a8fd;
+	//opacity: 0.5;*/
+	background-color: rgba(225, 225, 225, 0.1);
+}
+
+#map-handle {
+	margin-top: 8px;
+	width: 2px;
+	height: 192px;
+	/*//border-radius:12px;
+	//border: 2px solid #91a8fd;*/
+	background-color: #004a87;
+	/*//grey;//#91a8fd;*/
+	z-index: 1;
+}
+
+#map-ctl:hover #map-content {
+	display: block;
+}
+
+#map-ctl:hover #map-handle {
+	opacity: 0;
+}
+
+div#map-contain a {
+	margin-top: 10px;
+}
+
+/*
+#map-content input.btn{
+	border:1px solid #000000;
+	background-color:#d8ecff;
+	height:26px; padding:0px;
+}*/
+
+#open {
+	width: 140px;
+}
+
+input {
+	margin-top: 10px;
+	margin-left: -7px;
+	border: 1px solid #ccc;
+	padding: 0px 0px;
+	border-radius: 3px;
+	padding-left: 8px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	width: 147px;
+	height: 30px;
+	text-align: left;
+	/*//center;*/
+	align: center;
+	background: linear-gradient(135deg, #91a8fd, #9999ff);
+	border-radius: 4px;
+	opacity: 0.9;
+	color: white;
+}
+
+input:focus {
+	border-color: #91a8fd;
+	/*//66afe9;*/
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+	display: block;
+}
+
+#glass {
+	z-index: 10;
+	margin-left: 114px;
+	/*//144px;*/
+	margin-top: -26px;
+	width: 22px;
+	height: 22px;
+	position: relative;
+}
+
+#glass:hover {
+	cursor: pointer;
+}

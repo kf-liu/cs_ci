@@ -1,0 +1,75 @@
+#left {
+    float: left;
+    width: 200px;
+    height: 595px;
+    background-color: #FFFFFF;
+    margin: 0px;
+    padding: 5px 0px 5px 0px;
+    color: #91a8fd;
+    /*position:fixed;*/
+}
+
+#catalogue {
+    background-color: #91a8fd;
+    margin: 0px 5px 0px 5px;
+    height: 600px;
+}
+
+#left ul li a:link,
+#left ul li a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+#left ul li a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+#left div h2 {
+    font-size: 22px;
+    padding: 4px 0px 2px 15px;
+    color: #000000;
+    margin: 0px 0px 5px 0px;
+    background: #91a8fd;
+    line-height: 40px;
+}
+
+#left div h3 {
+    font-size: 12px;
+    padding: 4px 0px 2px 15px;
+    color: #003973;
+    margin: 0px 0px 5px 0px;
+    background: #bbddff url(icon2.gif) no-repeat 5px 7px;
+}
+
+#middle {
+    background-color: #FFFFFF;
+    margin: 0px 0px 0px 2px;
+    padding: 5px 0px 0px 0px;
+    width: 930px;
+    float: left;
+    height: 620px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+#middle div {
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    margin-top: 15px;
+}
+
+#middle p {
+    text-align: justify;
+    font-size: 18px;
+}
+
+#middle h2 {
+    margin: 5px;
+    padding-top: 5px;
+    height: 41px;
+    color: #003973;
+    text-align: left;
+}

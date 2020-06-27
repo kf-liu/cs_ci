@@ -1,0 +1,13 @@
+#leftnav {
+    width: 20%;
+    float:left;
+}
+#leftnav li {
+    cursor: pointer;
+}
+
+#right {
+    width: 80%;
+    height:100%;
+    float:left;
+}

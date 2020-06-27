@@ -46,3 +46,38 @@
 	border: 2px solid #004a87;
 	font-size: 16px;
 }
+
+
+/*
+ *武汉加油
+ */
+.loading {
+	display: flex;
+	color: white;
+	font-size: 1em;
+	text-transform: uppercase;
+	margin-top: -30px;
+	margin-left: 1019px;
+	font-family: 方正小标宋简体;
+}
+
+.loading span {
+	padding: 0 8px;
+	line-height: 30px;
+	background: #34495e;
+	/*//91a8fd;//004a87;*/
+	animation: bulge 2s infinite;
+	border-radius: 9px;
+}
+
+@keyframes bulge {
+	50% {
+		box-shadow: 0px 20px 0px #d8e3f6;
+		/*//eee;*/
+		transform: translateY(-35px);
+	}
+}
+
+a {
+	text-decoration: none;
+}

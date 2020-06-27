@@ -849,3 +849,29 @@ if ( ! function_exists('function_usable'))
 		return FALSE;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 自定义的函数
+function p($data){
+	echo "<pre>";
+	print_r($data);
+	echo "</pre>";
+}
