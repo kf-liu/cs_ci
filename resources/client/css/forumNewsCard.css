@@ -1,0 +1,183 @@
+/*瀑布*/
+.container-fluid {
+    padding: 20px;
+}
+
+.box {
+    margin-bottom: 10px;
+    float: left;
+    width: 18.8%;
+    margin-right: 5px;
+}
+
+.box img {
+    max-width: 100%
+}
+
+
+
+/*非瀑布*/
+
+#masonry .news{
+    margin: auto 5px;
+}
+
+.content>h3 {
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.content hr {
+    margin-top: 0px;
+    margin-left: 16px;
+    margin-bottom: 0px;
+}
+
+.news {
+    float: left;
+    text-align: justify;
+}
+
+.sNews {
+    width: 47.4%;
+    margin-top: 2%;
+    margin-left: 2%;
+    /* height: 350px; */
+    overflow: hidden;
+}
+
+/* .news:hover, */
+.lNews {
+    z-index: 20;
+    box-shadow: 0px 0px 1000px 1000px #a9a9a996;
+    position: fixed !important;
+    margin: auto;
+    top: 10% !important;
+    left: 10% !important;
+    height: 80%;
+    width: 80%;
+}
+
+.sNews .xNews {
+    display: none;
+}
+
+.lNews .xNews,
+.lNews .xAdd {
+    display: inline;
+    position: fixed;
+    top: 11%;
+    left: 86%;
+    font-weight: bold;
+}
+
+.sNews .updateNews,
+.sNews .deleteNews {
+    display: none;
+}
+
+.news .card-header {
+    text-align: center;
+}
+
+.news .biaoti {
+    padding-bottom: 0.5em;
+}
+
+.news .xiangqing {
+    padding-top: 0px;
+    /* height: 168px;
+overflow: auto; */
+    /* padding: 0px 5px; */
+}
+
+.news .sanlian {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+    box-shadow: 0px -8px 8px -2px #eee;
+}
+
+.news .card-footer {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    border-top: 0rem;
+    text-align: center;
+}
+
+.news .card-body-all {
+    /* height: 180px; */
+    overflow: auto;
+    /* margin-bottom: 0.5rem; */
+    margin-bottom: 0px;
+}
+
+.news .pinglun-textarea {
+    /* margin-top: -128px; */
+    margin-bottom: 0px;
+    z-index: 5;
+}
+
+.news .commentTxt {
+    resize: none;
+}
+
+.news .pinglun-textarea .btn {
+    /* margin-top: -80px;
+margin-bottom: 0px; */
+    width: 100%;
+}
+
+.pinglunp {
+    font-family: "Neucha", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 16px;
+    color: #212529;
+    margin: 2px 5px;
+}
+
+.pingluns {
+    /* max-height: 100px; */
+    overflow: auto;
+}
+
+.timestamp {
+    color: grey;
+    text-decoration: none;
+}
+
+.timestamp:hover {
+    cursor: text;
+    text-decoration: none;
+}
+
+.news .updateNews {
+    color: grey;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.news .updateNews:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.news .deleteNews {
+    color: grey;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.news .deleteNews:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: red;
+}
+
+.xAdd {
+    display: none;
+}

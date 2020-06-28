@@ -8,10 +8,11 @@ class Forum extends CI_Controller
     {
         $data['title'] = 'my forum';
         $data['mode'] = $mode;
+        $data['card_mode'] = 'small';
 
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->getNews();
-        $data['comments'] = $this->frmM->news2comments($data);
+        $data['comments'] = $this->frmM->news2comments($data['news']);
 
         $this->load->helper('form');
         $this->load->view('client/templets/header', $data);
@@ -121,6 +122,7 @@ class Forum extends CI_Controller
             }
         }
     }
+    // 去更新短讯
     public function goUpdate()
     {
         $data['news_id'] = $this->uri->segment(4);
@@ -129,6 +131,7 @@ class Forum extends CI_Controller
         $this->index();
         $this->load->view('client/forum/updateNews', $data);
     }
+    // 更新短讯
     public function updateNews()
     {
         $this->load->library('form_validation');
@@ -148,6 +151,7 @@ class Forum extends CI_Controller
             $this->goUpdate($this->input->post('news_id'));
         }
     }
+    // 删除短讯
     public function deleteNews()
     {
         $data = array(
@@ -156,5 +160,68 @@ class Forum extends CI_Controller
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->deleteNews($data);
         $this->index();
+    }
+    // 长篇彩页
+    public function lnews()
+    {
+        $this->load->view('client/forum/lnews');
+    }
+    //所有资讯
+    public function allNews()
+    {
+        $this->load->model('forum_model', 'frmM');
+        $data['news'] = $this->frmM->getNews();
+        $data['comments'] = $this->frmM->news2comments($data['news']);
+        $data['title'] = "所有资讯";
+        $data['card_mode'] = 'small';
+
+        $this->load->helper('form');
+        $this->load->view('client/templets/header', $data);
+        $this->load->view('client/templets/nav');
+        $this->load->view('client/forum/nav');
+        $this->load->view('client/forum/allNews');
+    }
+    //所有评论
+    public function allComments()
+    {
+        $data['title'] = "看评论";
+        $this->load->model('forum_model', 'frmM');
+        $data['comments'] = $this->frmM->allComments();
+        // p($data['comments']);die;
+        $this->load->helper('form');
+        $this->load->view('client/templets/header', $data);
+        $this->load->view('client/templets/nav');
+        $this->load->view('client/forum/nav');
+        $this->load->view('client/forum/allComments');
+    }
+    //我的发布
+    public function myNews()
+    {
+        if (!$this->session->userdata('client')) {
+            $this->index("loging");
+        } else {
+            $this->load->model('forum_model', 'frmM');
+            $data['news'] = $this->frmM->author2news($this->session->userdata('client'));
+            $data['comments'] = $this->frmM->news2comments($data['news']);
+            $data['title'] = "我的发布";
+            $data['card_mode'] = 'small';
+            $this->load->helper('form');
+            $this->load->view('client/templets/header', $data);
+            $this->load->view('client/templets/nav');
+            $this->load->view('client/forum/nav');
+            $this->load->view('client/forum/allNews');
+        }
+    }
+    //从评论看某一条新闻
+    public function aNews()
+    {
+        // echo $_SERVER['HTTP_REFERER']->uri->segment(7);die;
+        $data['news_id'] = $this->uri->segment(4);
+        $this->load->model('forum_model', 'frmM');
+        $data['news'] = $this->frmM->id2news($data['news_id']);
+        $data['comments'] = $this->frmM->news2comments($data['news']);
+        $this->allComments();
+        $data['title'] = '资讯详情';
+        $this->load->view('client/forum/aNews', $data);
     }
 }

@@ -17,7 +17,7 @@
         display: block;
     }
 
-    .navul .caidan{
+    .navul .caidan {
         display: inline;
     }
 
@@ -34,7 +34,7 @@
 <hr style="margin-top:3px;">
 <nav class="navbar navbar-expand-lg navbar-light bg-light bg" id="">
 
-    <a class="navbar-brand" href="#">资讯评论 · 主页</a>
+    <a class="navbar-brand" href="<?php echo site_url('client/forum')?>">资讯评论 · 主页</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -42,22 +42,15 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto navul">
             <li class="nav-item active">
-                <a class="nav-link caidan" href="#">所有资讯<span class="sr-only">(current)</span></a>
+                <a class="nav-link caidan" href="<?php echo site_url('client/forum/allNews')?>">所有资讯<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link caidan" href="#">看评论</a>
+                <a class="nav-link caidan" href="<?php echo site_url('client/forum/allComments')?>">看评论</a>
             </li>
             <li class="nav-item dropdown show caidanli" id="my">
                 <a class="nav-link caidan" role="button">我的</a>
-                <!-- <div id="my-xiala" class="dropdown-menu show" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
-                    <a class="dropdown-item" href="#">主页</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">评论</a>
-                    <a class="dropdown-item" href="#">收藏</a>
-                    <a class="dropdown-item" href="#">点赞</a>
-                </div> -->
                 <a class="nav-link xiala" role="button">『</a>
-                <a class="nav-link xiala" role="button">主页</a>
+                <a class="nav-link xiala" role="button" href="<?php echo site_url('client/forum/myNews')?>">发布</a>
                 <a class="nav-link xiala" role="button">评论</a>
                 <a class="nav-link xiala" role="button">收藏</a>
                 <a class="nav-link xiala" role="button">点赞</a>
@@ -71,6 +64,9 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
+            <?php if (isset($_SESSION['client'])) echo "用户 " . $_SESSION['client_name'];
+            else echo "<a href='".site_url('client/forum/index/loging')."'>登录</a>"."<a href='".site_url('client/forum/index/registering')."'>/注册</a>"; ?>
+            &nbsp;&nbsp;&nbsp;&nbsp;
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>

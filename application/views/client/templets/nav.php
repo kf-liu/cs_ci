@@ -10,7 +10,7 @@
         <li><a href="<?php echo site_url('home/record') ?>">自助行</a></li>
         <li><a href="<?php echo site_url('home/media') ?>">摄影摄像</a></li>
         <li><a href="<?php echo site_url('home/record') ?>">游记精选</a></li>
-        <li><a href="<?php echo site_url('client/forum/index') ?>">资讯评论</a></li>
+        <li><a href="<?php echo site_url('client/forum') ?>">资讯评论</a></li>
         <li><a href="<?php echo site_url('client/page/loadPage/xiang') ?>">湘江风光</a></li>
     </ul>
 </div>

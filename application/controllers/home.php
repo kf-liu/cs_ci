@@ -34,13 +34,12 @@ class Home extends CI_Controller {
 	{
 		$data['title']='自助行';
         $this->heads($data);
-        $this->load->view('client/go1');
+        $this->load->view('client/go');
         $this->load->view('client/templets/footer');
-        $this->load->view('client/go2');
 	}
 	public function record()
 	{
-		$data['title']='自助行';
+		$data['title']='游记精选';
         $this->heads($data);
         $this->load->view('client/record');
         $this->load->view('client/templets/footer');

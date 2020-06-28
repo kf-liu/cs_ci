@@ -170,7 +170,7 @@
     }
 
     .pingluns {
-        max-height: 100px;
+        /* max-height: 100px; */
         overflow: auto;
     }
 
@@ -272,75 +272,17 @@
     <!-- 右侧短讯版块 -->
     <h3>百字短讯</h3>
     <hr>
-    <?php for ($i = count($news) - 1; $i >= 0; $i--) { ?>
-        <div class="card mb-3 news bg sNews">
-            <h5 class="card-header oNews">
-                <?php echo $news[$i]['biaoti']; ?>
-            </h5>
-            <button class="btn btn-outline-secondary xNews">
-                &times;
-            </button>
-            <div class="card-body-all oNews">
-                <?php if ($news[$i]['zhaiyao'] != "") { ?>
-                    <div class="card-body biaoti">
-                        <h6 class="card-subtitle text-muted">
-                            <?php echo $news[$i]['zhaiyao']; ?>
-                        </h6>
-                    </div>
-                <?php } ?>
-                <!-- <img style="height: 200px; width: 100%; display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_158bd1d28ef%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_158bd1d28ef%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22129.359375%22%20y%3D%2297.35%22%3EImage%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image"> -->
-                <div class="card-body xiangqing">
-                    <p class="card-text">
-                        <?php echo $news[$i]['zhengwen']; ?>
-                    </p>
-                </div>
-            </div>
-            <div class="btn-group sanlian" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-primary" id="zan">☎
-                    <?php echo $news[$i]['like_count']; ?>
-                </button>
-                <button type="button" class="btn btn-outline-primary">★
-                    <?php echo $news[$i]['star_count']; ?>
-                </button>
-                <button type="button" class="btn btn-outline-primary" id="pinglun<?php echo $i ?>" onclick="pl(<?php echo $i ?>)">✎</button>
-            </div>
-            <div class="form-group pinglun-textarea" id="pinglun-textarea<?php echo $i ?>" style="display:none;">
-                <!-- <label for="exampleTextarea">Example textarea</label> -->
-                <form method="POST" action="<?php echo site_url('client/forum/addComments') ?>">
-                    <textarea class="form-control commentTxt" rows="3" name="comments" placeholder="<?php echo set_value('comments') ?>">
-                        <?php echo form_error(
-                            'biaoti',
-                            '<a style="text-align:right;color:#000;font-size:12px;">',
-                            '</a>'
-                        ); ?>
-                    </textarea>
-                    <button type="submit" class="btn btn-primary">评论</button>
-                    <input type="hidden" name="news_id" value="<?php echo $news[$i]['id']; ?>">
-                </form>
-            </div>
-            <div class="pingluns oNews" id="pingluns<?php echo $i ?>">
-                <?php foreach ($comments[$i] as $c) { ?>
-                    <p class="pinglunp"><a href="javascript:void(0);" class="card-link">
-                            <?php echo $c['username']; ?>
-                        </a>
-                        ：<?php echo $c['words']; ?>
-                        <a href="javascript:return;" class="timestamp">
-                            <?php echo $c['time']; ?>
-                        </a>
-                    </p>
-                <?php } ?>
-            </div>
-            <div class="card-footer text-muted oNews">
-                <?php if (isset($_SESSION['client']) and $news[$i]['author_id'] == $_SESSION['client']) { ?>
-                    <a onclick="deleteNews(<?php echo $news[$i]['id']; ?>)" class="deleteNews">删除&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    <a href="<?php echo site_url('client/forum/goUpdate/' . $news[$i]['id']) ?>" class="updateNews">更新&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                <?php };
-                echo $news[$i]['author_name'] . " · " . $news[$i]['time']; ?>
-            </div>
-        </div>
-    <?php } ?>
+    <?php for ($i = count($news) - 1; $i >= 0 and $i >= count($news) - 6; $i--) {
+        include 'pNewsCard.php';
+    } ?>
+
+    <h3>长篇新闻彩页 <a href="<?php echo site_url('client/forum/lnews') ?>">>>武汉抗疫情专栏</a></h3>
+
+    <hr>
+    <br>
 
 </div>
+
 </div>
 
 
@@ -370,7 +312,7 @@
 
     function deleteNews($n) {
         if (window.confirm('删除后无法恢复，是否确定删除？')) {
-            window.location.href='<?php echo site_url('client/forum/deleteNews/') ?>' + $n;
+            window.location.href = '<?php echo site_url('client/forum/deleteNews/') ?>' + $n;
         }
     }
 </script>
