@@ -17,13 +17,18 @@
         display: block;
     }
 
-    /* #others-xiala {
-        display: none;
+    .navul .caidan{
+        display: inline;
     }
 
-    #others:hover #others-xiala {
-        display: block;
-    } */
+    .xiala {
+        display: none;
+        font-weight: normal;
+    }
+
+    .caidanli:hover .xiala {
+        display: inline;
+    }
 </style>
 
 <hr style="margin-top:3px;">
@@ -35,25 +40,34 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto navul">
             <li class="nav-item active">
-                <a class="nav-link" href="#">所有资讯<span class="sr-only">(current)</span></a>
+                <a class="nav-link caidan" href="#">所有资讯<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">看评论</a>
+                <a class="nav-link caidan" href="#">看评论</a>
             </li>
-            <li class="nav-item dropdown show" id="my">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">我的</a>
-                <div id="my-xiala" class="dropdown-menu show" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+            <li class="nav-item dropdown show caidanli" id="my">
+                <a class="nav-link caidan" role="button">我的</a>
+                <!-- <div id="my-xiala" class="dropdown-menu show" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
                     <a class="dropdown-item" href="#">主页</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">评论</a>
                     <a class="dropdown-item" href="#">收藏</a>
                     <a class="dropdown-item" href="#">点赞</a>
-                </div>
+                </div> -->
+                <a class="nav-link xiala" role="button">『</a>
+                <a class="nav-link xiala" role="button">主页</a>
+                <a class="nav-link xiala" role="button">评论</a>
+                <a class="nav-link xiala" role="button">收藏</a>
+                <a class="nav-link xiala" role="button">点赞</a>
+                <a class="nav-link xiala" role="button">』</a>
             </li>
-            <li class="nav-item" id="others">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">其他</a>
+            <li class="nav-item caidanli" id="others">
+                <a class="nav-link caidan" role="button">其他</a>
+                <a class="nav-link xiala" role="button">『</a>
+                <a class="nav-link xiala" role="button">管理员登录</a>
+                <a class="nav-link xiala" role="button">』</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">

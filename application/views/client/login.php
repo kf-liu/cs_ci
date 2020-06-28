@@ -74,9 +74,9 @@
 
 <script>
     window.onload = function() {
-        if (<?php if ($mode == "loging") echo "true";
+        if (<?php if ($mode == "loging" and !isset($_SESSION['client'])) echo "true";
             else echo "false"; ?>) $("#loginModal").show();
-        else if (<?php if ($mode == "registering") echo "true";
+        else if (<?php if ($mode == "registering" and !isset($_SESSION['client'])) echo "true";
                     else echo "false"; ?>) $("#registerModal").show();
     };
     $(".x").click(function() {
