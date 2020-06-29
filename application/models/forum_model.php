@@ -33,24 +33,29 @@ class Forum_model extends CI_Model
         $this->db->insert('news', $data);
     }
     // 发表评论
-    public function addComments($data){
+    public function addComments($data)
+    {
         $this->db->insert('comments', $data);
     }
     // 根据短讯news_id获取短讯内容
-    public function id2news($data){
+    public function id2news($data)
+    {
         $res = $this->db->where(array("id" => $data))->get('news')->result_array();
         return $res;
     }
     //更新短讯
-    public function updateNews($data){
+    public function updateNews($data)
+    {
         $this->db->update('news', $data, array('id' => $data['id']));
     }
     //删除短讯
-    public function deleteNews($data){
+    public function deleteNews($data)
+    {
         $this->db->delete('news', $data);
     }
     //查询作者的全部短讯
-    public function author2news($data){
+    public function author2news($data)
+    {
         $res = $this->db->where(array("author_id" => $data))->get('news')->result_array();
         return $res;
     }
@@ -65,5 +70,16 @@ class Forum_model extends CI_Model
             $data[$i]['news_biaoti'] = $news[0]['biaoti'];
         }
         return $data;
+    }
+    //根据id拉取用户信息
+    public function getClient($data)
+    {
+        $res = $this->db->where(array("id" => $data))->get('clients')->result_array();
+        return $res;
+    }
+    //更新用户信息
+    public function updateClient($data)
+    {
+        $this->db->update('clients', $data, array('id' => $data['id']));
     }
 }

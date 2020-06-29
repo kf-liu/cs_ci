@@ -13,14 +13,34 @@ class Forum extends CI_Controller
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->getNews();
         $data['comments'] = $this->frmM->news2comments($data['news']);
+        $this->loadNav($data);
+        $this->load->view('client/forum/index');
+        $this->load->view('client/login');
+        $this->load->view('client/register');
+    }
+    //加载头部和两条导航栏
+    public function loadNav($data)
+    {
+        if (!isset($data['title'])) $data['title'] = "my forum";
+        if (!isset($data['mode'])) $data['mode'] = "";
+        if (!isset($data['card_mode'])) $data['card_mode'] = "small";
+        $data['client'] = $this->getClient();
 
         $this->load->helper('form');
         $this->load->view('client/templets/header', $data);
         $this->load->view('client/templets/nav');
         $this->load->view('client/forum/nav');
-        $this->load->view('client/forum/index');
-        $this->load->view('client/login');
-        $this->load->view('client/register');
+    }
+    //拉取用户信息
+    public function getClient()
+    {
+        if (isset($_SESSION['client'])) {
+            $this->load->model('forum_model', 'frmM');
+            $client = $this->frmM->getClient($_SESSION['client']);
+            $client[0]['like'] = $this->varchar2array($client[0]['like']);
+            $client[0]['star'] = $this->varchar2array($client[0]['star']);
+            return $client[0];
+        }
     }
     // 登录
     public function login()
@@ -174,11 +194,7 @@ class Forum extends CI_Controller
         $data['comments'] = $this->frmM->news2comments($data['news']);
         $data['title'] = "所有资讯";
         $data['card_mode'] = 'small';
-
-        $this->load->helper('form');
-        $this->load->view('client/templets/header', $data);
-        $this->load->view('client/templets/nav');
-        $this->load->view('client/forum/nav');
+        $this->loadNav($data);
         $this->load->view('client/forum/allNews');
     }
     //所有评论
@@ -187,11 +203,7 @@ class Forum extends CI_Controller
         $data['title'] = "看评论";
         $this->load->model('forum_model', 'frmM');
         $data['comments'] = $this->frmM->allComments();
-        // p($data['comments']);die;
-        $this->load->helper('form');
-        $this->load->view('client/templets/header', $data);
-        $this->load->view('client/templets/nav');
-        $this->load->view('client/forum/nav');
+        $this->loadNav($data);
         $this->load->view('client/forum/allComments');
     }
     //我的发布
@@ -204,11 +216,7 @@ class Forum extends CI_Controller
             $data['news'] = $this->frmM->author2news($this->session->userdata('client'));
             $data['comments'] = $this->frmM->news2comments($data['news']);
             $data['title'] = "我的发布";
-            $data['card_mode'] = 'small';
-            $this->load->helper('form');
-            $this->load->view('client/templets/header', $data);
-            $this->load->view('client/templets/nav');
-            $this->load->view('client/forum/nav');
+            $this->loadNav($data);
             $this->load->view('client/forum/allNews');
         }
     }
@@ -223,5 +231,32 @@ class Forum extends CI_Controller
         $this->allComments();
         $data['title'] = '资讯详情';
         $this->load->view('client/forum/aNews', $data);
+    }
+    //拆分like和star
+    public function varchar2array($data)
+    {
+        $data = explode("x", $data);
+        return $data;
+    }
+
+    public function uploadLike($id, $news_like, $client_like)
+    {
+        $news['id'] = $id;
+        $news['like_count'] = $news_like;
+        $this->load->model('forum_model', 'frmM');
+        $this->frmM->updateNews($news);
+        $client['id'] = $_SESSION['client'];
+        $client['like'] = $client_like;
+        $this->frmM->updateClient($client);
+    }
+    public function uploadStar($id, $news_star, $client_star)
+    {
+        $news['id'] = $id;
+        $news['star_count'] = $news_star;
+        $this->load->model('forum_model', 'frmM');
+        $this->frmM->updateNews($news);
+        $client['id'] = $_SESSION['client'];
+        $client['star'] = $client_star;
+        $this->frmM->updateClient($client);
     }
 }

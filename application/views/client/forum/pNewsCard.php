@@ -1,8 +1,9 @@
-<div class="box card mb-3 news bg <?php if(isset($card_mode) and $card_mode=="large") echo "lNews"; else echo "sNews";?>">
+<div class="box card mb-3 news bg <?php if (isset($card_mode) and $card_mode == "large") echo "lNews";
+                                    else echo "sNews"; ?>">
     <h5 class="card-header oNews">
         <?php echo $news[$i]['biaoti']; ?>
     </h5>
-    <button class="btn btn-outline-secondary xNews">
+    <button class="btn btn-outline-secondary xNews hide">
         &times;
     </button>
     <div class="card-body-all oNews">
@@ -20,23 +21,32 @@
         </div>
     </div>
     <div class="btn-group sanlian" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-outline-primary" id="zan">☎
-            <?php echo $news[$i]['like_count']; ?>
+        <button type="button" id="like<?php echo $news[$i]['id'] ?>" onclick="onClickLike(<?php echo $news[$i]['id'] ?>)" class="btn btn-outline-primary" id="zan">☎
+            <a id="likeN<?php echo $news[$i]['id']; ?>"><?php echo $news[$i]['like_count']; ?></a>
+            <?php if (!empty($client) and in_array($news[$i]['id'], $client['like'])) { ?>
+                <script>
+                    like(<?php echo $news[$i]['id']; ?>);
+                </script>
+            <?php } ?>
         </button>
-        <button type="button" class="btn btn-outline-primary">★
-            <?php echo $news[$i]['star_count']; ?>
+        <button type="button" id="star<?php echo $news[$i]['id']; ?>" onclick="onClickStar(<?php echo $news[$i]['id'] ?>)" class="btn btn-outline-primary">★
+            <a id="starN<?php echo $news[$i]['id']; ?>"><?php echo $news[$i]['star_count']; ?></a>
+            <?php if (!empty($client) and in_array($news[$i]['id'], $client['star'])) { ?>
+                <script>
+                    star(<?php echo $news[$i]['id']; ?>);
+                </script>
+            <?php } ?>
         </button>
         <button type="button" class="btn btn-outline-primary" id="pinglun<?php echo $i ?>" onclick="pl(<?php echo $i ?>)">✎</button>
     </div>
     <div class="form-group pinglun-textarea" id="pinglun-textarea<?php echo $i ?>" style="display:none;">
         <form method="POST" action="<?php echo site_url('client/forum/addComments') ?>">
-            <textarea class="form-control commentTxt" rows="3" name="comments" placeholder="<?php echo set_value('comments') ?>">
-                        <?php echo form_error(
-                            'biaoti',
-                            '<a style="text-align:right;color:#000;font-size:12px;">',
-                            '</a>'
-                        ); ?>
-                    </textarea>
+            <textarea class="form-control commentTxt" rows="3" name="comments" placeholder="<?php echo set_value('comments') ?>"></textarea>
+            <?php echo form_error(
+                'biaoti',
+                '<a style="text-align:right;color:#000;font-size:12px;">',
+                '</a>'
+            ); ?>
             <button type="submit" class="btn btn-primary">评论</button>
             <input type="hidden" name="news_id" value="<?php echo $news[$i]['id']; ?>">
         </form>
@@ -61,3 +71,7 @@
         echo $news[$i]['author_name'] . " · " . $news[$i]['time']; ?>
     </div>
 </div>
+<script>
+    $like[<?php echo $news[$i]['id']; ?>] = <?php echo $news[$i]['like_count']; ?>;
+    $star[<?php echo $news[$i]['id']; ?>] = <?php echo $news[$i]['star_count']; ?>;
+</script>

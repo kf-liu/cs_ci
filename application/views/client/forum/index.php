@@ -250,7 +250,7 @@
                         '</a>'
                     ); ?>
                     <input type="text" class="form-control" placeholder="摘要（13字/行，可为空）" name="zhaiyao" value="<?php echo set_value('zhaiyao') ?>">
-                    <textarea class="form-control" rows="8" name="zhengwen" placeholder="正文（100-200字为佳）"><?php echo set_value('zhengwen') ?></textarea>
+                    <textarea class="form-control" rows="8" name="zhengwen" placeholder="正文（100-200字为佳，点击表头“发布短讯”可放大编辑框）"><?php echo set_value('zhengwen') ?></textarea>
                     <?php echo form_error(
                         'zhengwen',
                         '<a style="text-align:center;color:#000;font-size:12px;">',
@@ -265,7 +265,7 @@
 
 </div>
 
-
+<?php include 'forum_header_js.php';?>
 
 <div id=right>
 
@@ -286,33 +286,4 @@
 </div>
 
 
-
-<script>
-    $("#loginBtn").click(function() {
-        $("#loginModal").show();
-    });
-    $("#registerBtn").click(function() {
-        $("#registerModal").show();
-    });
-
-    function pl($n) {
-        $("#pinglun-textarea" + $n).fadeToggle("slow");
-        $("#pingluns" + $n).toggle();
-    }
-
-    $(".oNews").click(function() {
-        this.parentNode.className = "card mb-3 news bg lNews";
-    });
-    $(".xNews").click(function() {
-        this.parentNode.className = "card mb-3 news bg sNews";
-    })
-    $(".xAdd").click(function() {
-        this.parentNode.className = "";
-    })
-
-    function deleteNews($n) {
-        if (window.confirm('删除后无法恢复，是否确定删除？')) {
-            window.location.href = '<?php echo site_url('client/forum/deleteNews/') ?>' + $n;
-        }
-    }
-</script>
+<?php include 'forum_js.php';?>
