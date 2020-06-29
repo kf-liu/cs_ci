@@ -312,10 +312,20 @@ class Forum extends CI_Controller
         $client['star'] = $client_star;
         $this->frmM->updateClient($client);
     }
-    public function search()
+    public function search($keywords = null, $news_id = null)
     {
         $data['keywords'] = $this->input->post('keywords');
+        if (isset($keywords)) $data['keywords'] = urldecode($keywords);
         $this->load->model('forum_model', 'frmM');
-        $this->frmM->search($data['keywords']);
+        $data['result'] = $this->frmM->search($data['keywords']);
+        $data['title'] = '"' . $data['keywords'] . '"' . " 搜索结果";
+        $this->loadHeader($data);
+        $this->load->view('client/forum/search', $data);
+        if (isset($news_id)) $this->aNews($news_id);
+    }
+    //unicode->utf8
+    public static function decodeUnicode($str)
+    {
+        return preg_replace_callback('/\\\\u([0-9a-f]{4})/i', create_function('$matches', 'return iconv("UCS-2BE","UTF-8",pack("H*", $matches[1]));'), $str);
     }
 }

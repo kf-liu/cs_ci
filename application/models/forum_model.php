@@ -126,8 +126,15 @@ class Forum_model extends CI_Model
     }
     public function search($keywords)
     {
-        $res = $this->db->like('biaoti', $keywords, 'both')->get('news')->result_array();
-        p($res);
-        die;
+        $res['news']['in_biaoti'] = $this->db->like('biaoti', $keywords, 'both')->get('news')->result_array();
+        $res['news']['in_zhaiyao'] = $this->db->like('zhaiyao', $keywords, 'both')->get('news')->result_array();
+        $res['news']['in_zhengwen'] = $this->db->like('zhengwen', $keywords, 'both')->get('news')->result_array();
+        $res['in_comments'] = $this->db->like('words', $keywords, 'both')->get('comments')->result_array();
+        for ($i = 0; $i < count($res['in_comments']); $i++) {
+            $news = $this->id2news($res['in_comments'][$i]['news_id']);
+            $res['in_comments'][$i]['biaoti'] = $news[0]['biaoti'];
+        }
+        $res['in_clients'] = $this->db->like('username', $keywords, 'both')->get('clients')->result_array();
+        return $res;
     }
 }

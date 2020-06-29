@@ -63,23 +63,42 @@
                 <a class="nav-link xiala" role="button">』</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0"  method="POST" action="<?php echo site_url('client/forum/search') ?>" >
+        <form class="form-inline my-2 my-lg-0" method="POST" action="<?php echo site_url('client/forum/search') ?>" id="searchForm">
             <?php if (isset($_SESSION['client'])) echo "用户 " . $_SESSION['client_name'];
             else echo "<a href='" . site_url('client/forum/index/loging') . "'>登录</a>" . "<a href='" . site_url('client/forum/index/registering') . "'>/注册</a>"; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="keywords" class="form-control mr-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <input name="keywords" id="keywords" class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" onclick="" id="searchBtn">Search</button>
         </form>
     </div>
 </nav>
 <div id="below" width="100%">
-<script>
-    function page($url) {
-        $.ajax({
-            url: '<?php echo site_url(); ?>' + $url,
-            success: function(result) {
-                $("#below").html(result);
-            }
-        });
-    }
-</script>
+    <script>
+        function page($url) {
+            $.ajax({
+                url: '<?php echo site_url(); ?>' + $url,
+                success: function(result) {
+                    $("#below").html(result);
+                }
+            });
+        }
+
+        function search() {
+            $.ajax({
+                //几个参数需要注意一下
+                type: "GET", //方法类型
+                dataType: "array", //预期服务器返回的数据类型
+                url: "<?php echo site_url('client/forum/search') ?>", //url
+                data: $('#searchForm').serialize(),
+                success: function(result) {
+                    console.log(result); //打印服务端返回的数据(调试用)
+                    if (result.resultCode == 200) {
+                        alert("SUCCESS");
+                    };
+                },
+                error: function() {
+                    alert("异常！");
+                }
+            });
+        }
+    </script>
