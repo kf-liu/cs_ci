@@ -1,4 +1,4 @@
-<div class="box card mb-3 news bg <?php if (isset($card_mode) and $card_mode == "large") echo "lNews";
+<div id="news<?php echo $news[$i]['id'];?>"class="box card mb-3 news bg <?php if (isset($card_mode) and $card_mode == "large") echo "lNews";
                                     else echo "sNews"; ?>">
     <h5 class="card-header oNews">
         <?php echo $news[$i]['biaoti']; ?>

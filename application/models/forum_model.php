@@ -71,6 +71,42 @@ class Forum_model extends CI_Model
         }
         return $data;
     }
+    // 根据id获取my所有评论 $data为user_id
+    public function myComments($data)
+    {
+        $data = $this->db->where(array("user_id" => $data))->get('comments')->result_array();
+        for ($i = 0; $i < count($data); $i++) {
+            $name = $this->db->where(array("id" => $data[$i]['user_id']))->get('clients')->result_array();
+            $data[$i]['user_name'] = $name[0]['username'];
+            $news = $this->db->where(array("id" => $data[$i]['news_id']))->get('news')->result_array();
+            $data[$i]['news_biaoti'] = $news[0]['biaoti'];
+        }
+        return $data;
+    }
+    //根据id获取我的收藏
+    public function myStar($data)
+    {
+        $user_data = $this->getClient($data);
+        $user_star = $this->varchar2array($user_data[0]['star']);
+        $res = array();
+        foreach ($user_star as $u) {
+            $news = $this->db->where(array("id" => $u))->get('news')->result_array();
+            array_push($res, $news[0]);
+        }
+        return $res;
+    }
+    //根据id获取我的点赞
+    public function myLike($data)
+    {
+        $user_data = $this->getClient($data);
+        $user_star = $this->varchar2array($user_data[0]['like']);
+        $res = array();
+        foreach ($user_star as $u) {
+            $news = $this->db->where(array("id" => $u))->get('news')->result_array();
+            array_push($res, $news[0]);
+        }
+        return $res;
+    }
     //根据id拉取用户信息
     public function getClient($data)
     {
@@ -81,5 +117,17 @@ class Forum_model extends CI_Model
     public function updateClient($data)
     {
         $this->db->update('clients', $data, array('id' => $data['id']));
+    }
+    //拆分like和star
+    public function varchar2array($data)
+    {
+        $data = explode("x", $data);
+        return $data;
+    }
+    public function search($keywords)
+    {
+        $res = $this->db->like('biaoti', $keywords, 'both')->get('news')->result_array();
+        p($res);
+        die;
     }
 }

@@ -265,7 +265,7 @@
 
 </div>
 
-<?php include 'forum_header_js.php';?>
+<?php include 'forum_header_js.php'; ?>
 
 <div id=right>
 
@@ -286,4 +286,4 @@
 </div>
 
 
-<?php include 'forum_js.php';?>
+<?php include 'forum_js.php'; ?>

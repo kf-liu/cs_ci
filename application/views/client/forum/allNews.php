@@ -5,7 +5,7 @@
 <div class="content">
     <?php //echo $_SERVER['REQUEST_URI'];
     ?>
-    <h3>所有资讯</h3>
+    <h3><?php echo $title;?></h3>
     <hr>
     <div id="masonry" class="container-fluid">
         <?php for ($i = count($news) - 1; $i >= 0; $i--) {

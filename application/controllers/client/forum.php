@@ -13,13 +13,13 @@ class Forum extends CI_Controller
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->getNews();
         $data['comments'] = $this->frmM->news2comments($data['news']);
-        $this->loadNav($data);
+        $this->loadHeader($data);
         $this->load->view('client/forum/index');
         $this->load->view('client/login');
         $this->load->view('client/register');
     }
-    //加载头部和两条导航栏
-    public function loadNav($data)
+    //加载头部
+    public function loadHeader($data)
     {
         if (!isset($data['title'])) $data['title'] = "my forum";
         if (!isset($data['mode'])) $data['mode'] = "";
@@ -28,7 +28,13 @@ class Forum extends CI_Controller
 
         $this->load->helper('form');
         $this->load->view('client/templets/header', $data);
-        $this->load->view('client/templets/nav');
+        $this->load->view('client/forum/massages');
+        $this->loadNav($data);
+    }
+    //加载两条导航栏
+    public function loadNav($data = null)
+    {
+        $this->load->view('client/templets/nav', $data);
         $this->load->view('client/forum/nav');
     }
     //拉取用户信息
@@ -37,8 +43,8 @@ class Forum extends CI_Controller
         if (isset($_SESSION['client'])) {
             $this->load->model('forum_model', 'frmM');
             $client = $this->frmM->getClient($_SESSION['client']);
-            $client[0]['like'] = $this->varchar2array($client[0]['like']);
-            $client[0]['star'] = $this->varchar2array($client[0]['star']);
+            $client[0]['like'] = $this->frmM->varchar2array($client[0]['like']);
+            $client[0]['star'] = $this->frmM->varchar2array($client[0]['star']);
             return $client[0];
         }
     }
@@ -194,17 +200,20 @@ class Forum extends CI_Controller
         $data['comments'] = $this->frmM->news2comments($data['news']);
         $data['title'] = "所有资讯";
         $data['card_mode'] = 'small';
-        $this->loadNav($data);
+        $this->loadHeader($data);
         $this->load->view('client/forum/allNews');
     }
     //所有评论
-    public function allComments()
+    public function allComments($news_id = null)
     {
         $data['title'] = "看评论";
         $this->load->model('forum_model', 'frmM');
         $data['comments'] = $this->frmM->allComments();
-        $this->loadNav($data);
+        $data['controller'] = "client/forum/allComments";
+        $this->loadHeader($data);
         $this->load->view('client/forum/allComments');
+        $this->load->view('client/forum/aNews', $data);
+        if (isset($news_id)) $this->aNews($news_id);
     }
     //我的发布
     public function myNews()
@@ -216,28 +225,72 @@ class Forum extends CI_Controller
             $data['news'] = $this->frmM->author2news($this->session->userdata('client'));
             $data['comments'] = $this->frmM->news2comments($data['news']);
             $data['title'] = "我的发布";
-            $this->loadNav($data);
+            $this->loadHeader($data);
             $this->load->view('client/forum/allNews');
         }
     }
-    //从评论看某一条新闻
-    public function aNews()
+    //我的评论
+    public function myComments($news_id = null)
     {
-        // echo $_SERVER['HTTP_REFERER']->uri->segment(7);die;
-        $data['news_id'] = $this->uri->segment(4);
+        if (!$this->session->userdata('client')) {
+            $this->index("loging");
+        } else {
+            $data['title'] = "我的评论";
+            $this->load->model('forum_model', 'frmM');
+            $data['comments'] = $this->frmM->myComments($_SESSION['client']);
+            $data['controller'] = "client/forum/myComments";
+            $this->loadHeader($data);
+            $this->load->view('client/forum/allComments');
+            $this->load->view('client/forum/aNews', $data);
+            if (isset($news_id)) $this->aNews($news_id);
+        }
+    }
+    //从评论看某一条新闻
+    public function aNews($news_id)
+    {
+        $data['news_id'] = $news_id; //$this->uri->segment(4);
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->id2news($data['news_id']);
         $data['comments'] = $this->frmM->news2comments($data['news']);
-        $this->allComments();
-        $data['title'] = '资讯详情';
+        // $this->allComments();
         $this->load->view('client/forum/aNews', $data);
     }
-    //拆分like和star
-    public function varchar2array($data)
+    //我的收藏
+    public function myStar()
     {
-        $data = explode("x", $data);
-        return $data;
+        if (!$this->session->userdata('client')) {
+            $this->index("loging");
+        } else {
+            $this->load->model('forum_model', 'frmM');
+            $data['news'] = $this->frmM->myStar($this->session->userdata('client'));
+            $data['comments'] = $this->frmM->news2comments($data['news']);
+            $data['title'] = "我的收藏";
+            $this->loadHeader($data);
+            $this->load->view('client/forum/allNews');
+        }
     }
+    //我的点赞
+    public function myLike()
+    {
+        if (!$this->session->userdata('client')) {
+            $this->index("loging");
+        } else {
+            $this->load->model('forum_model', 'frmM');
+            $data['news'] = $this->frmM->myLike($this->session->userdata('client'));
+            $data['comments'] = $this->frmM->news2comments($data['news']);
+            $data['title'] = "我的点赞";
+            $this->loadHeader($data);
+            $this->load->view('client/forum/allNews');
+        }
+    }
+
+
+    //拆分like和star
+    // public function varchar2array($data)
+    // {
+    //     $data = explode("x", $data);
+    //     return $data;
+    // }
 
     public function uploadLike($id, $news_like, $client_like)
     {
@@ -258,5 +311,11 @@ class Forum extends CI_Controller
         $client['id'] = $_SESSION['client'];
         $client['star'] = $client_star;
         $this->frmM->updateClient($client);
+    }
+    public function search()
+    {
+        $data['keywords'] = $this->input->post('keywords');
+        $this->load->model('forum_model', 'frmM');
+        $this->frmM->search($data['keywords']);
     }
 }
