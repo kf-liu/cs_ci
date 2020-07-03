@@ -38,15 +38,17 @@ class Forum extends CI_Controller
         $this->load->view('client/forum/nav');
     }
     //拉取用户信息
-    public function getClient()
+    public function getClient($user_id = null)
     {
-        if (isset($_SESSION['client'])) {
-            $this->load->model('forum_model', 'frmM');
-            $client = $this->frmM->getClient($_SESSION['client']);
-            $client[0]['like'] = $this->frmM->varchar2array($client[0]['like']);
-            $client[0]['star'] = $this->frmM->varchar2array($client[0]['star']);
-            return $client[0];
+        if (!isset($user_id) and !isset($_SESSION['client'])) return;
+        if (!isset($user_id)) {
+            $user_id = $_SESSION['client'];
         }
+        $this->load->model('forum_model', 'frmM');
+        $client = $this->frmM->getClient($user_id);
+        $client[0]['like'] = $this->frmM->varchar2array($client[0]['like']);
+        $client[0]['star'] = $this->frmM->varchar2array($client[0]['star']);
+        return $client[0];
     }
     // 登录
     public function login()
@@ -92,7 +94,6 @@ class Forum extends CI_Controller
             );
             $this->load->model('login_model', 'logM');
             $this->logM->cliRegister($data);
-            echo "<script>alert('注册成功 请登录')</script>";
             $this->index("loging");
         } else {
             $this->load->helper('form');
@@ -117,7 +118,7 @@ class Forum extends CI_Controller
                 );
                 $this->load->model('forum_model', 'frmM');
                 $this->frmM->addNews($data);
-                $this->index();
+                redirect(site_url('client/forum'));
             } else {
                 $this->load->helper('form');
                 $this->index();
@@ -141,7 +142,7 @@ class Forum extends CI_Controller
                 );
                 $this->load->model('forum_model', 'frmM');
                 $this->frmM->addComments($data);
-                $this->index();
+                redirect(site_url('client/forum'));
             } else {
                 $this->load->helper('form');
                 $this->index();
@@ -171,7 +172,7 @@ class Forum extends CI_Controller
             );
             $this->load->model('forum_model', 'frmM');
             $this->frmM->updateNews($data);
-            $this->index();
+            redirect(site_url('client/forum'));
         } else {
             $this->load->helper('form');
             $this->goUpdate($this->input->post('news_id'));
@@ -185,7 +186,7 @@ class Forum extends CI_Controller
         );
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->deleteNews($data);
-        $this->index();
+        redirect(site_url('client/forum'));
     }
     // 长篇彩页
     public function lnews()
@@ -208,11 +209,11 @@ class Forum extends CI_Controller
     {
         $data['title'] = "看评论";
         $this->load->model('forum_model', 'frmM');
-        $data['comments'] = $this->frmM->allComments();
+        $data['myComments'] = $this->frmM->allComments();
         $data['controller'] = "client/forum/allComments";
         $this->loadHeader($data);
         $this->load->view('client/forum/allComments');
-        $this->load->view('client/forum/aNews', $data);
+        // $this->load->view('client/forum/aNews', $data);
         if (isset($news_id)) $this->aNews($news_id);
     }
     //我的发布
@@ -237,11 +238,11 @@ class Forum extends CI_Controller
         } else {
             $data['title'] = "我的评论";
             $this->load->model('forum_model', 'frmM');
-            $data['comments'] = $this->frmM->myComments($_SESSION['client']);
+            $data['myComments'] = $this->frmM->myComments($_SESSION['client']);
             $data['controller'] = "client/forum/myComments";
             $this->loadHeader($data);
             $this->load->view('client/forum/allComments');
-            $this->load->view('client/forum/aNews', $data);
+            // $this->load->view('client/forum/aNews', $data);
             if (isset($news_id)) $this->aNews($news_id);
         }
     }
@@ -327,5 +328,28 @@ class Forum extends CI_Controller
     public static function decodeUnicode($str)
     {
         return preg_replace_callback('/\\\\u([0-9a-f]{4})/i', create_function('$matches', 'return iconv("UCS-2BE","UTF-8",pack("H*", $matches[1]));'), $str);
+    }
+    //我的主页
+    public function myHome($news_id = null)
+    {
+        if (!$this->session->userdata('client')) {
+            $this->index("loging");
+        } else {
+            $this->userHome($_SESSION['client'], $news_id, "myHome");
+        }
+    }
+    //别人主页
+    public function userHome($user_id, $news_id = null, $controller = "userHome")
+    {
+        $this->load->model('forum_model', 'frmM');
+        $data['news'] = $this->frmM->author2news($user_id);
+        $data['comments'] = $this->frmM->news2comments($data['news']);
+        $data['myComments'] = $this->frmM->myComments($user_id);
+        $data['controller'] = "client/forum/" . $controller;
+        $data['user'] = $this->getClient($user_id);
+        $data['title'] = $data['user']['username'] . ' · 主页';
+        $this->loadHeader($data);
+        $this->load->view('client/forum/userHome');
+        if (isset($news_id)) $this->aNews($news_id);
     }
 }

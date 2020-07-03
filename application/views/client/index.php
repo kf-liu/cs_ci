@@ -1,4 +1,4 @@
-<link href="<?php echo base_url() . '/resources/client/css/index.css' ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url() . 'resources/client/css/index.css' ?>" rel="stylesheet" type="text/css">
 <div id="below">
     <div id="left">
         <div id="weather">
@@ -15,31 +15,31 @@
         <div id="today">
             <h3><span>今日推荐</span></h3>
             <ul>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/beichen.jpg' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/beichen.jpg' ?>"></a></li>
                 <li><a href="#">北辰三角洲</a></li>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/lizijian.png' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/lizijian.png' ?>"></a></li>
                 <li><a href="#">李自健美术馆</a></li>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/shijiezhichuang.jpg' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/shijiezhichuang.jpg' ?>"></a></li>
                 <li><a href="#">世界之窗</a></li>
             </ul>
             <br>
         </div>
     </div>
     <div id="middle">
-        <div id="ghost"><a href="#" title="爱晚亭雪景"><img src="<?php echo base_url() . '/resources/client/img/index/snow.jpeg' ?>" border="0"></a></div>
+        <div id="ghost"><a href="#" title="爱晚亭雪景"><img src="<?php echo base_url() . 'resources/client/img/index/snow.jpeg' ?>" border="0"></a></div>
 
         <div id="beauty">
-            <img src="<?php echo base_url('/resources/client/img/index/beauty.png'); ?>" border="0" height=60 margin=10px>
+            <img src="<?php echo base_url('resources/client/img/index/beauty.png'); ?>" border="0" height=60 margin=10px>
             <ul>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/helong.jpg' ?>"></a></li>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/nanjiao.jpg' ?>"></a></li>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/yanghu.jpg' ?>"></a></li>
-                <li><a href="#"><img src="<?php echo base_url() . '/resources/client/img/index/motianlun.jpg' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/helong.jpg' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/nanjiao.jpg' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/yanghu.jpg' ?>"></a></li>
+                <li><a href="#"><img src="<?php echo base_url() . 'resources/client/img/index/motianlun.jpg' ?>"></a></li>
             </ul>
             <br>
         </div>
         <div id="route">
-            <img src="<?php echo base_url() . '/resources/client/img/index/line.png'?>" border="0" height=60 margin=10px>
+            <img src="<?php echo base_url() . 'resources/client/img/index/line.png'?>" border="0" height=60 margin=10px>
             <ul>
                 <li><a href="#">(长沙周边游)花明楼刘少奇故居——文物展馆——铜像广场</a></li>
                 <li><a href="#">(长沙周边游)铜像广场——毛泽东故居——毛泽东纪念馆</a></li>
@@ -54,8 +54,8 @@
     <div id="right">
         <div id="map">
             <h3><span>湘江风光</span></h3>
-            <p><a href="#" title="点击看大图"><img src="<?php echo base_url() . '/resources/client/img/index/xiangjiang1.jpg' ?>"></a></p>
-            <p><a href="#" title="点击看大图"><img src="<?php echo base_url() . '/resources/client/img/index/xiangjiang2.jpeg' ?>"></a></p>
+            <p><a href="#" title="点击看大图"><img src="<?php echo base_url() . 'resources/client/img/index/xiangjiang1.jpg' ?>"></a></p>
+            <p><a href="#" title="点击看大图"><img src="<?php echo base_url() . 'resources/client/img/index/xiangjiang2.jpeg' ?>"></a></p>
         </div>
         <div id="food">
             <h3><span>小吃推荐</span></h3>

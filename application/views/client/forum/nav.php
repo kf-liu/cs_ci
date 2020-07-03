@@ -48,7 +48,7 @@
                 <a class="nav-link caidan" href="<?php echo site_url('client/forum/allComments') ?>">看评论</a>
             </li>
             <li class="nav-item dropdown show caidanli" id="my">
-                <a class="nav-link caidan" role="button">我的</a>
+                <a class="nav-link caidan" role="button" href="<?php echo site_url('client/forum/myHome') ?>">我的</a>
                 <a class="nav-link xiala" role="button">『</a>
                 <a class="nav-link xiala" role="button" href="<?php echo site_url('client/forum/myNews') ?>">发布</a>
                 <a class="nav-link xiala" role="button" href="<?php echo site_url('client/forum/myComments') ?>">评论</a>
@@ -67,7 +67,7 @@
             <?php if (isset($_SESSION['client'])) echo "用户 " . $_SESSION['client_name'];
             else echo "<a href='" . site_url('client/forum/index/loging') . "'>登录</a>" . "<a href='" . site_url('client/forum/index/registering') . "'>/注册</a>"; ?>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <input name="keywords" id="keywords" class="form-control mr-sm-2" type="text" placeholder="Search">
+            <input name="keywords" id="keywords" class="form-control mr-sm-2" type="text" placeholder="Search" value="<?php echo set_value('keywords');?>">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit" onclick="" id="searchBtn">Search</button>
         </form>
     </div>

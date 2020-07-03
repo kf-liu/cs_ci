@@ -218,7 +218,7 @@
 
     <!-- 左侧个人信息版块 -->
     <br>
-    <?php if (!$this->session->userdata('client')) { ?>
+    <?php if (!isset($_SESSION['client'])) { ?>
         您尚未登录<br>
         <button type="button" class="btn btn-primary log" id="loginBtn">登录</button>
         <br>or
@@ -226,7 +226,7 @@
         <button type="button" class="btn btn-primary log" id="registerBtn">注册</button>
     <?php } else { ?>
         您好，
-        <a href="javascript:void(0);" class="username"><?php echo $this->session->userdata('client_name'); ?></a>
+        <a href="javascript:void(0);" class="username"><?php echo $_SESSION['client_name']; ?></a>
         <br>
         <a href="<?php echo site_url('client/forum/logout') ?>" class="card-link logout">注销</a>
         <a href="<?php echo site_url('client/forum/logout/loging') ?>" class="card-link logout">重新登录</a>

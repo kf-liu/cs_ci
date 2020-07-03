@@ -2,7 +2,7 @@
 <script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 <?php include 'forum_header_js.php';?>
 
-<div class="content">
+<div class="content" id="allNews">
     <?php //echo $_SERVER['REQUEST_URI'];
     ?>
     <h3><?php echo $title;?></h3>

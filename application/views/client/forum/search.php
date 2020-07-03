@@ -5,7 +5,7 @@
         box-shadow: 2px 2px 4px #888;
     }
 
-    .search tr {
+    .search tbody {
         /* height: 120px; */
         overflow: auto;
         cursor: pointer;
@@ -80,7 +80,7 @@ $printedNews = array(); ?>
         </thead>
         <tbody>
             <?php foreach ($result['in_clients'] as $client) { ?>
-                <tr class="table-active">
+                <tr class="table-active" onclick="window.open('<?php echo site_url('client/forum/userHome/' . $client['id']); ?>','_blank')">
                     <td><?php echo str_replace($keywords, $highlight . $keywords . '</a>',  $client['username']); ?></td>
                 </tr>
             <?php } ?>

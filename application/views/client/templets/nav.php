@@ -1,5 +1,5 @@
-<link href="<?php echo base_url() . '/resources/client/css/header.css' ?>" rel="stylesheet" type="text/css">
-<link href="<?php echo base_url() . '/resources/client/css/body.css' ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url() . 'resources/client/css/header.css' ?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url() . 'resources/client/css/body.css' ?>" rel="stylesheet" type="text/css">
 <div id="globallink">
     <ul>
         <li><a href="<?php echo site_url() ?>"><b>首页</b></a></li>

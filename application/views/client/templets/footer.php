@@ -1,4 +1,4 @@
-<link href="<?php echo base_url() . '/resources/client/css/' ?>footer.css" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url() . 'resources/client/css/' ?>footer.css" rel="stylesheet" type="text/css">
 </div>
 <div id="footer">
     <p>

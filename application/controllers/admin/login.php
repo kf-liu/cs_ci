@@ -28,7 +28,7 @@ class Login extends CI_Controller
             $res = $this->logM->adLogin($data);
             if($res){
                 /*用户存在 */
-                $this->session->set_userdata('admin',$data['id']);
+                $this->session->set_userdata('admin',$res[0]['id']);
                 $this->session->set_userdata('admin_name',$data['username']);
                 // echo $this->session->userdata('admin');
                 $this->load->view('admin/templets/header');

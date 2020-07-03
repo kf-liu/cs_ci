@@ -95,14 +95,36 @@ $db['test'] = array(
 	'save_queries' => TRUE
 );
 
-$db['default'] = array(
+$db['freela'] = array(
+	'dsn'	=> '',
+	'hostname' => 'sql302.freela.ml',
+	'username' => 'frlm_25665338',
+	'password' => 'seeyaq',
+	'database' => 'frlm_25665338_test',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => 'wt_',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['rainyun'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '11111111',
-	'database' => 'web_test',
+	'username' => '40535',
+	'password' => 'FwEsM67bBOqVwHTxGAWjmSCR7783Jva3',
+	'database' => '40535',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'dbprefix' => 'wt_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
