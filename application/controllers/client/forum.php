@@ -25,6 +25,10 @@ class Forum extends CI_Controller
         if (!isset($data['mode'])) $data['mode'] = "";
         if (!isset($data['card_mode'])) $data['card_mode'] = "small";
         $data['client'] = $this->getClient();
+        if (isset($data['theme'])) {
+        } else if (isset($data['client']['theme'])) {
+            $data['theme'] = $data['client']['theme'];
+        } else $data['theme'] = "sketchy";
 
         $this->load->helper('form');
         $this->load->view('client/templets/header', $data);
@@ -150,9 +154,9 @@ class Forum extends CI_Controller
         }
     }
     // 去更新短讯
-    public function goUpdate()
+    public function goUpdate($new_id)
     {
-        $data['news_id'] = $this->uri->segment(4);
+        $data['news_id'] = $new_id;
         $this->load->model('forum_model', 'frmM');
         $data['news'] = $this->frmM->id2news($data['news_id']);
         $this->index();
@@ -347,9 +351,17 @@ class Forum extends CI_Controller
         $data['myComments'] = $this->frmM->myComments($user_id);
         $data['controller'] = "client/forum/" . $controller;
         $data['user'] = $this->getClient($user_id);
+        $data['theme'] = $data['user']['theme'];
         $data['title'] = $data['user']['username'] . ' · 主页';
         $this->loadHeader($data);
         $this->load->view('client/forum/userHome');
         if (isset($news_id)) $this->aNews($news_id);
+    }
+    //修改主题
+    public function theme($theme)
+    {
+        $this->load->model('forum_model', 'frmM');
+        $data['news'] = $this->frmM->setTheme($theme);
+        redirect(site_url('client/forum/myHome'));
     }
 }

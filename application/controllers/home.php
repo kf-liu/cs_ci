@@ -37,11 +37,25 @@ class Home extends CI_Controller {
         $this->load->view('client/go');
         $this->load->view('client/templets/footer');
 	}
+	public function media()
+	{
+		$data['title']='长沙镜头';
+        $this->heads($data);
+        $this->load->view('client/media');
+        $this->load->view('client/templets/footer');
+	}
 	public function record()
 	{
 		$data['title']='游记精选';
         $this->heads($data);
         $this->load->view('client/record');
+        $this->load->view('client/templets/footer');
+	}
+	public function xiang()
+	{
+		$data['title']='湘江风光';
+        $this->heads($data);
+        $this->load->view('client/xiang');
         $this->load->view('client/templets/footer');
 	}
 	// public function forum()

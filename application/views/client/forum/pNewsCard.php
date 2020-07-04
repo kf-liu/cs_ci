@@ -6,6 +6,7 @@
     <button class="btn btn-outline-secondary xNews hide">
         &times;
     </button>
+    <!-- 标摘 正文 -->
     <div class="card-body-all oNews">
         <?php if ($news[$i]['zhaiyao'] != "") { ?>
             <div class="card-body biaoti">
@@ -20,6 +21,7 @@
             </p>
         </div>
     </div>
+    <!-- 三连 -->
     <div class="btn-group sanlian" role="group" aria-label="Basic example">
         <button type="button" id="like<?php echo $news[$i]['id'] ?>" onclick="onClickLike(<?php echo $news[$i]['id'] ?>)" class="btn btn-outline-primary" id="zan">☎
             <a id="likeN<?php echo $news[$i]['id']; ?>"><?php echo $news[$i]['like_count']; ?></a>
@@ -39,6 +41,7 @@
         </button>
         <button type="button" class="btn btn-outline-primary" id="pinglun<?php echo $i ?>" onclick="pl(<?php echo $i ?>)">✎</button>
     </div>
+    <!-- 写评论 -->
     <div class="form-group pinglun-textarea" id="pinglun-textarea<?php echo $i ?>" style="display:none;">
         <form method="POST" action="<?php echo site_url('client/forum/addComments') ?>">
             <textarea class="form-control commentTxt" rows="3" name="comments" placeholder="<?php echo set_value('comments') ?>"></textarea>
@@ -51,6 +54,7 @@
             <input type="hidden" name="news_id" value="<?php echo $news[$i]['id']; ?>">
         </form>
     </div>
+    <!-- 看评论 -->
     <div class="pingluns oNews" id="pingluns<?php echo $i ?>">
         <?php /*if (!empty($comments[$i]))*/ foreach ($comments[$i] as $c) { ?>
             <p class="pinglunp"><a href="javascript:void(0);" class="card-link">
@@ -63,6 +67,7 @@
             </p>
         <?php } ?>
     </div>
+    <!-- 脚 -->
     <div class="card-footer text-muted oNews">
         <?php if (isset($_SESSION['client']) and $news[$i]['author_id'] == $_SESSION['client']) { ?>
             <a onclick="deleteNews(<?php echo $news[$i]['id']; ?>)" class="deleteNews">删除&nbsp;&nbsp;&nbsp;&nbsp;</a>

@@ -1,5 +1,9 @@
 <script src="https://unpkg.com/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
 <style type="text/css">
+    .allComments {
+        margin-top: 5px;
+    }
+
     .allComments .container-fluid {
         padding: 20px;
     }
@@ -33,7 +37,7 @@
 </style>
 <div id="allComments">
     <div id="masonry" class="container-fluid allComments">
-        <?php foreach (array_reverse($myComments) as $c) { ?>
+        <?php foreach (array_reverse($myComments) as $c) { if($c['news_biaoti']=="") continue;?>
             <div class="box comments">
                 <div class="card border-primary mb-3" style="max-width: 20rem;">
                     <div class="card-header"><?php echo /*$c['id'] . */ $c['user_name']; ?></div>

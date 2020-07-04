@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+error_reporting( E_ALL&~E_NOTICE );
 
 class Forum_model extends CI_Model
 {
@@ -83,6 +84,11 @@ class Forum_model extends CI_Model
         }
         return $data;
     }
+    //删除评论
+    public function deleteComments($data)
+    {
+        $this->db->delete('comments', $data);
+    }
     //根据id获取我的收藏
     public function myStar($data)
     {
@@ -108,9 +114,10 @@ class Forum_model extends CI_Model
         return $res;
     }
     //根据id拉取用户信息
-    public function getClient($data)
+    public function getClient($data = null)
     {
-        $res = $this->db->where(array("id" => $data))->get('clients')->result_array();
+        if (isset($data)) $res = $this->db->where(array("id" => $data))->get('clients')->result_array();
+        else $res = $this->db->get('clients')->result_array();
         return $res;
     }
     //更新用户信息
@@ -136,5 +143,10 @@ class Forum_model extends CI_Model
         }
         $res['in_clients'] = $this->db->like('username', $keywords, 'both')->get('clients')->result_array();
         return $res;
+    }
+    //修改主题
+    public function setTheme($theme)
+    {
+        $this->db->update('clients', array('theme' => $theme), array('id' => $_SESSION['client']));
     }
 }

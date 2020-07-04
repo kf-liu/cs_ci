@@ -4,12 +4,12 @@
 <head>
     <title>qk`长沙</title>
     <!--?php echo $title; ?-->
-    <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('resources/theme/solar.min.css'); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url() . '/resources/admin/css/' ?>header.css" rel="stylesheet" type="text/css">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script res="<?php echo base_url('/resources/admin/js/header.js') ?>"></script>
-    <link href="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script> -->
 </head>
 
 <body>
@@ -52,8 +52,9 @@
                     </li>
                 </ul>
                 <a href="<?php echo site_url('admin/login/index'); ?>" style="margin:auto auto;">注销</a>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <form class="form-inline my-2 my-lg-0" method="POST" action="<?php //echo site_url('admin/forum/search') 
+                                                                                ?>" id="searchForm">
+                    <input name="keywords" class="form-control mr-sm-2" type="text" placeholder="Search">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
@@ -61,4 +62,4 @@
 
 
 
-    <div style='height:100%;'>
+        <div style='height:100%;'>

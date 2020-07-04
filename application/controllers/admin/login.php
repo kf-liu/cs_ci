@@ -14,22 +14,27 @@ class Login extends CI_Controller
     }
     public function submit()
     {
+        if ($this->input->post('yanzheng') != $_POST['num']) {
+            echo "<script>alert('验证码错误');window.location.href='" . site_url('admin/login') . "'</script>";
+            // $this->show_register();
+            return;
+        }
         $this->load->library('form_validation');
         // $this->form_validation->set_rules('username','用户名','required');
         // $this->form_validation->set_rules('password','密码','required');
         // $this->form_validation->set_rules('yanzheng','验证码','required');
         $status = $this->form_validation->run('loginSub');
         if ($status) {
-            $data=array(
+            $data = array(
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password')
             );
-            $this->load->model('login_model','logM');
+            $this->load->model('login_model', 'logM');
             $res = $this->logM->adLogin($data);
-            if($res){
+            if ($res) {
                 /*用户存在 */
-                $this->session->set_userdata('admin',$res[0]['id']);
-                $this->session->set_userdata('admin_name',$data['username']);
+                $this->session->set_userdata('admin', $res[0]['id']);
+                $this->session->set_userdata('admin_name', $data['username']);
                 // echo $this->session->userdata('admin');
                 $this->load->view('admin/templets/header');
                 $this->load->view('admin/templets/leftnav');
@@ -37,12 +42,12 @@ class Login extends CI_Controller
                 $this->load->view('admin/templets/footer');
                 // $this->load->controller('admin/intro');
                 // $this->intro->index();
-            }else{
+            } else {
                 /*用户不存在 */
                 echo "<script>alert('用户名或密码错误')</script>";
                 $this->index();
             }
-        }else{
+        } else {
             $this->load->helper('form');
             // $this->load->view('admin/templets/header');
             // $this->load->view('admin/login');
@@ -50,7 +55,8 @@ class Login extends CI_Controller
             $this->index();
         }
     }
-    public function show_register(){
+    public function show_register()
+    {
         $this->load->helper('form');
         $data['title'] = 'qk`admin';
         $this->load->view('admin/templets/header', $data);
@@ -63,15 +69,15 @@ class Login extends CI_Controller
         $this->load->library('form_validation');
         $status = $this->form_validation->run('loginSub');
         if ($status) {
-            $data=array(
+            $data = array(
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password')
             );
-            $this->load->model('login_model','logM');
+            $this->load->model('login_model', 'logM');
             $this->logM->adRegister($data);
             echo "<script>alert('注册成功 请登录')</script>";
             $this->show_register();
-        }else{
+        } else {
             $this->load->helper('form');
             // $this->load->view('admin/templets/header');
             // $this->load->view('admin/register');

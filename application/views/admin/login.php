@@ -24,9 +24,15 @@
             </tr>
             <tr class="form-group">
                 <td>
-                    <label for="exampleInputPassword1">验证码</label>
+                    <label for="exampleInputPassword1">验证码</label><br>
+                    <?php
+                    $num = intval(mt_rand(1000, 9999));
+                    for ($i = 0; $i < 4; $i++) {
+                        echo "<img src=" . base_url('resources/code/') . substr(strval($num), $i, 1) . ".gif>";
+                    } ?>
                 </td>
                 <td>
+                    <input type="hidden" value="<?php echo $num; ?>" name="num" />
                     <input type="text" class="form-control input" name="yanzheng" placeholder="请输入验证码" value="<?php echo set_value('password') ?>">
                     <?php echo form_error('yanzheng', '<a style="text-align:right;color:#eee;font-size:12px;">', '</a>'); ?>
                 </td>

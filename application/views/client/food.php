@@ -2,7 +2,7 @@
 <script src="<?php echo base_url('/resources/client/js/food.js') ?>"></script>
 <div id="left">
     <div id="login">
-        <img src="food/images/login.png" id="loginimg" height=60px onclick="loginclick()" />
+        <img src="<?php echo base_url('resources/client/img/food/');?>login.png" id="loginimg" height=60px onclick="loginclick()" />
         <form id="form" action="food/php/login.php" method="login">
             <p>用户: <input type="text" class="text"></p>
             <p>密码: <input type="text" class="text"></p>
@@ -48,34 +48,34 @@
 </div>
 <div id="main">
     <div id="update">
-        <img src="food/images/update.png" height=60px />
+        <img src="<?php echo base_url('resources/client/img/food/');?>update.png" height=60px />
         <div id="latest">
-            <a href="#"><img src="food/images/update1.jpg"></a>
-            <a href="#"><img src="food/images/update2.jpg"></a>
-            <a href="#"><img src="food/images/update3.jpg"></a>
+            <a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>update1.jpg"></a>
+            <a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>update2.jpg"></a>
+            <a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>update3.jpg"></a>
         </div>
     </div>
     <div id="recommend">
-        <img src="food/images/recommend.png" height=60px />
+        <img src="<?php echo base_url('resources/client/img/food/');?>recommend.png" height=60px />
         <ul>
-            <li><a href="#"><img src="food/images/recommend1.jpg"><br>刮凉粉</a><br>￥10元</li>
-            <li><a href="#"><img src="food/images/recommend2.jpg"><br>大香肠</a><br>￥10元</li>
-            <li><a href="#"><img src="food/images/recommend3.gif"><br>小龙虾</a><br>￥100元</li>
-            <li><a href="#"><img src="food/images/recommend4.jpg"><br>糖油粑粑</a><br>￥10元</li>
-            <li><a href="#"><img src="food/images/recommend5.jpg"><br>兰花干</a><br>￥5元</li>
-            <li><a href="#"><img src="food/images/recommend6.jpg"><br>茶颜悦色</a><br>￥20元</li>
-            <li><a href="#"><img src="food/images/recommend7.jpg"><br>冬瓜山小香肠</a><br>￥10元</li>
-            <li><a href="#"><img src="food/images/recommend8.jpg"><br>麻油猪血汤</a><br>￥10元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend1.jpg"><br>刮凉粉</a><br>￥10元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend2.jpg"><br>大香肠</a><br>￥10元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend3.gif"><br>小龙虾</a><br>￥100元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend4.jpg"><br>糖油粑粑</a><br>￥10元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend5.jpg"><br>兰花干</a><br>￥5元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend6.jpg"><br>茶颜悦色</a><br>￥20元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend7.jpg"><br>冬瓜山小香肠</a><br>￥10元</li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>recommend8.jpg"><br>麻油猪血汤</a><br>￥10元</li>
         </ul>
         <br>&nbsp;
     </div>
     <div id="new">
-        <img src="food/images/classic.png" height=60px />
+        <img src="<?php echo base_url('resources/client/img/food/');?>classic.png" height=60px />
         <ul>
-            <li><a href="#"><img src="food/images/classic1.jpg"><br>剁椒鱼头</a></li>
-            <li><a href="#"><img src="food/images/classic2.jpg"><br>麻辣子鸡</a></li>
-            <li><a href="#"><img src="food/images/classic3.jpg"><br>辣椒炒肉</a></li>
-            <li><a href="#"><img src="food/images/classic4.jpg"><br>擂辣椒皮蛋</a></li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>classic1.jpg"><br>剁椒鱼头</a></li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>classic2.jpg"><br>麻辣子鸡</a></li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>classic3.jpg"><br>辣椒炒肉</a></li>
+            <li><a href="#"><img src="<?php echo base_url('resources/client/img/food/');?>classic4.jpg"><br>擂辣椒皮蛋</a></li>
         </ul>
         <br>&nbsp;
     </div>
